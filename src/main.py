@@ -12,8 +12,14 @@ def main():
     print("Classification Report:")
     print(class_report)
 
+    # Adiciona a probabilidade de subida ao DataFrame
     data['Probabilidade_Subida'] = model.predict_proba(X)[:, 1]
-    print(data[['StockCode', 'Probabilidade_Subida']])
+
+    # Ordena os dados pela maior probabilidade de subida
+    data_sorted = data.sort_values(by='Probabilidade_Subida', ascending=False)
+
+    # Salva os dados ordenados em um arquivo result.txt
+    data_sorted[['StockCode', 'Probabilidade_Subida']].to_csv('result.txt', index=False)
 
 if __name__ == "__main__":
     main()
