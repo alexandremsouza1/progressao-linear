@@ -1,0 +1,48 @@
+{
+  "ReferenceDate": "24 mai, 15:19",
+  "Data": [
+      {
+          "Date": "2024-05-24T17:11:00",
+          "StockCode": "MGLU3",
+          "StockName": "MAGAZ LUIZA ON NM",
+          "Value": 1.32000,
+          "ValueFormatted": "1,32",
+          "ChangeDay": -7.04000,
+          "ChangeDayFormatted": "-7,04",
+          "Change12M": -64.72569,
+          "Change12MFormatted": "-64,72",
+          "Volume": 342620395.00000,
+          "VolumeFormatted": "342,62 M"
+      },
+      {
+          "Date": "2024-05-24T17:05:00",
+          "StockCode": "SEQL3",
+          "StockName": "SEQUOIA LOG ON NM",
+          "Value": 0.34000,
+          "ValueFormatted": "0,34",
+          "ChangeDay": -5.55000,
+          "ChangeDayFormatted": "-5,55",
+          "Change12M": -77.33333,
+          "Change12MFormatted": "-77,33",
+          "Volume": 949208.00000,
+          "VolumeFormatted": "949,21 K"
+      },
+      {
+          "Date": "2024-05-24T17:07:00",
+          "StockCode": "TECN3",
+          "StockName": "TECHNOS ON NM",
+          "Value": 4.26000,
+          "ValueFormatted": "4,26",
+          "ChangeDay": -5.12000,
+          "ChangeDayFormatted": "-5,12",
+          "Change12M": 46.61848,
+          "Change12MFormatted": "46,61",
+          "Volume": 2931011.00000,
+          "VolumeFormatted": "2,93 M"
+      }
+  ],
+  "PageIndex": 1,
+  "PageSize": 500,
+  "TotalCount": 241,
+  "TotalPages": 1
+}

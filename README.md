@@ -22,6 +22,10 @@ Para instalar as dependências do projeto, você pode usar o seguinte comando:
 ``venv\Scripts\activate``
 
 
+## Executar os testes unitarios 
+
+``python -m unittest tests.test_data_fetcher``
+
 ## Executando o Projeto
 
 Para executar o projeto, você pode usar o seguinte comando:
