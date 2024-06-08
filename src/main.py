@@ -1,10 +1,12 @@
 from data_fetcher import fetch_data
 from data_processor import process_data
+from yahoo import add_change_3m_to_df
 from model import train_model
 
 def main():
     data = fetch_data()
-    X, y = process_data(data)
+    new_data = add_change_3m_to_df(data)
+    X, y = process_data(new_data)
     model, accuracy, conf_matrix, class_report = train_model(X, y)
     print(f"Accuracy: {accuracy}")
     print("Confusion Matrix:")

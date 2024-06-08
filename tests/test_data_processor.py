@@ -23,7 +23,7 @@ class TestProcessData(unittest.TestCase):
         X, y = process_data(df)
 
         # Verificar se os conjuntos de características (X) e alvos (y) estão corretos
-        expected_X = df[['ChangeDay', 'Change12M', 'Volume']]
+        expected_X = df[['ChangeDay', 'Change3M', 'Volume']]
         expected_y = np.array([0, 0, 1])  # Valores esperados para o alvo (Up)
         pd.testing.assert_frame_equal(X, expected_X)
         np.testing.assert_array_equal(y, expected_y)
