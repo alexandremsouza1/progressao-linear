@@ -1,5 +1,5 @@
 import yfinance as yf
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 
 def calculate_change_3m(ticker):
@@ -20,6 +20,12 @@ def calculate_change_3m(ticker):
 
     return change_percent
 
+def get_change_3m(stock_code):
+    stock = adjust_b3_ticker(stock_code)
+    ticker = stock + ".SA"  # Adicione ".SA" ao ticker para corresponder ao formato do yfinance
+    change_3m = calculate_change_3m(ticker)
+    return change_3m
+
 def add_change_3m_to_df(df):
     """
     Adiciona a coluna 'Change3M' a um DataFrame com informações sobre ações.
@@ -30,15 +36,22 @@ def add_change_3m_to_df(df):
     Retorna:
     pd.DataFrame: O DataFrame atualizado com a coluna 'Change3M' adicionada.
     """
-    changes_3m = []
+    with ThreadPoolExecutor() as executor:
+        futures = {executor.submit(get_change_3m, row['StockCode']): index for index, row in df.iterrows()}
+        changes_3m = []
 
-    for index, row in df.iterrows():
-        stock = adjust_b3_ticker(row['StockCode'])
-        ticker = stock + ".SA"  # Adicione ".SA" ao ticker para corresponder ao formato do yfinance
-        change_3m = calculate_change_3m(ticker)
-        changes_3m.append(change_3m)
-    
-    df['Change3M'] = changes_3m
+        for future in as_completed(futures):
+            index = futures[future]
+            try:
+                change_3m = future.result()
+            except Exception as e:
+                change_3m = None  # Ou alguma forma de lidar com erros
+                print(f"Erro ao calcular mudança de 3 meses para o índice {index}: {e}")
+            changes_3m.append((index, change_3m))
+
+    # Ordena os resultados de changes_3m de volta à ordem original do DataFrame
+    changes_3m.sort(key=lambda x: x[0])
+    df['Change3M'] = [change[1] for change in changes_3m]
     return df
 
 def adjust_b3_ticker(ticker):
